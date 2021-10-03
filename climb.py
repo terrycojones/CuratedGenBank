@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # CLIMBED
 # Copyright (C) 2015, 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -15,8 +17,6 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-#!/usr/bin/python
 
 import sys, os, re
 from Bio import SeqIO
@@ -145,7 +145,7 @@ def error(message):
 def warning(message):
 	out = 'Warning [%s]: %s ' % (sys._getframe(1).f_code.co_name, message)
 	if interactive:
-		print (out)
+		print(out)
 	else:
 		sys.stderr.write(out)
 # ---------------
@@ -182,12 +182,12 @@ def parseList(tempcc, aa=False, mappingPos=1):	# default mapping is 1:1
 def seqShow(ss):
 	''' Output list (from 'nuc' ('extract') or find for example) in triplet groups '''
 	for i in range(len(ss)):
-		print ss[i][0] + '\t',
+		print(ss[i][0] + '\t')
 		# each triplet as an entry in a list:
 		# x = [ss[0][1][x:x+3] for x in range(0, len(ss[0][1]), 3)]
 		for j in range(0, len(ss[i][1]), 3):
-			print ss[i][1][j:j+3],
-		print
+			print(ss[i][1][j:j+3])
+		print()
 # ---------------
 
 def randomStamp():
@@ -273,7 +273,7 @@ def contig(F, R):
 		qualWin1 = sum(F.QS[window1[0]:window1[1]+1]) // (CW * 2 + 1)	# integer division
 		qualWin2 = sum(R.QS[window1[0]:window1[1]+1]) // (CW * 2 + 1)
 
-		# print "pos1:%03i qual1:%i base1:%s window1:%03i-%03i basewin1:%s qualwin1:%i | pos2:%03i qual2:%i base2:%s window2:%03i-%03i basewin2:%s qualwin2:%i" % (pos1, qual1, base1, window1[0], window1[1], baseWin1, qualWin1, pos2, qual2, base2,  window2[0], window2[1], baseWin2, qualWin2)
+		# print("pos1:%03i qual1:%i base1:%s window1:%03i-%03i basewin1:%s qualwin1:%i | pos2:%03i qual2:%i base2:%s window2:%03i-%03i basewin2:%s qualwin2:%i" % (pos1, qual1, base1, window1[0], window1[1], baseWin1, qualWin1, pos2, qual2, base2,  window2[0], window2[1], baseWin2, qualWin2))
 
 		# using (quality score of base (qual) OR quality score of window (window) means that
 		# an indiviual good quality base is never lost, but also that one poor quality base
@@ -281,12 +281,12 @@ def contig(F, R):
 
 		# base1 is a gap and base2 to is not a gap and (base2 quality score OR quality score of window2 >= quality threshold)
 		if base1 == gap and base2 != gap and (qual2 >= QT or qualWin2 >= QT):
-			# print i, base1, qual2, base2
+			# print(i, base1, qual2, base2)
 			cons += base2
 			CQ += pairGapBase
 		# base2 is a gap and base1 to is not a gap and (base1 quality score OR quality score of window1 >= quality threshold)
 		elif base1 != gap and base2 == gap and (qual1 >= QT or qualWin1 >= QT):
-			# print i, qual1, base1, base2
+			# print(i, qual1, base1, base2)
 			cons += base1
 			CQ += pairGapBase
 			# if one of the bases is a gap and the one which is not a gap has BOTH a quality score and a quality score of window below threshold, then nothing is added to the consensus
@@ -331,15 +331,15 @@ def contig(F, R):
 		else:
 			cons += base1
 			CQ += pairBaseGood
-		# print cons
+		# print(cons)
 
-	# print "Consensus Length %i" % (len(cons))
+	# print("Consensus Length %i" % (len(cons)))
 
 	# c = 0
 	# for i in cons:
 	#	if i not in BASES:
 	#		c += 1
-	# print "%i of %i (%3.2f%%) bases are ambiguous" % (c, len(cons), float(c)/len(cons) * 100)
+	# print("%i of %i (%3.2f%%) bases are ambiguous" % (c, len(cons), float(c)/len(cons) * 100))
 
 	# return contig, CW, aligned forward and reverse sequences, original forward and reverse sequences
 	# the original, untrimmed sequence is not available, as this was trimmed when the chromatogram was loaded
@@ -365,7 +365,7 @@ def fragmentmerger(mergeFiles, FRAGABIF=[False] * MAX_FRAGMENTS, X=[BASESTHRESHO
 			tooLow.append(i+1)
 
 	if len(tooLow) > 0:
-		print "Chromatogram quality too low (fragment/s %s trimmed to zero length)." % (tooLow)
+		print("Chromatogram quality too low (fragment/s %s trimmed to zero length)." % (tooLow))
 		sys.exit(2)
 
 	# Save the trimmed FASTA file locally
@@ -467,7 +467,7 @@ def fetchGenBank(sequenceList, emailAddress):
 	for seq in sequenceList:
 		handle = Entrez.efetch(db="nucleotide", rettype="gb", id=seq)
 		if len(handle.peekline()) == 1:		# peek at the next line without consuming it
-		#	print "%s is an invalid accession number and has been ignored" % seq
+		#	print("%s is an invalid accession number and has been ignored" % seq)
 			badSeq += 1	# what else to do?
 		else:
 			record = SeqIO.read(handle, "genbank")
@@ -545,7 +545,7 @@ def distributionShow(D, loci, numSeqs, rowList=BASES+NONBASES, percentage=True, 
 
 		out2 += lineend
 
-	# print out2
+	# print(out2)
 
 	return out1 + out2
 # ---------------
@@ -603,7 +603,7 @@ def translateLociShow(TT, html=False, highlightAminoAcids=True):
 		out = out + linestart + boldon + str(i[0]) + boldoff + delim + i[1]
 		for j in JJ:
 			# j is the key
-			print i[2][j][1]
+			print(i[2][j][1])
 			threeLetter = robustTranslate(i[2][j])[1]
 			if highlightAminoAcids and html and threeLetter in HIGHLIGHTAMINOACIDS:
 				if threeLetter in ['Met', 'Ter']:
@@ -746,7 +746,7 @@ class Sequence:
 				try:
 					f = ABIFReader.ABIFReader(cc[0])
 				except:
-					print "Bad chromatogram file: %s" % os.path.split(cc[0])[1]	# clumsy but effective
+					print("Bad chromatogram file: %s" % os.path.split(cc[0])[1])	# clumsy but effective
 					sys.exit(1)
 			else:
 				f = open(cc[0], 'r')
@@ -773,9 +773,9 @@ class Sequence:
 						# condition above implements this in one condition
 				if len(self.seq) < 1:
 					if self.totalCount > 1:
-						print "All sequences excluded by filter pattern: %s" % filterPattern
+						print("All sequences excluded by filter pattern: %s" % filterPattern)
 					else:
-						print "Bad FASTA file: %s" % os.path.split(cc[0])[1]	# clumsy but effective
+						print("Bad FASTA file: %s" % os.path.split(cc[0])[1])	# clumsy but effective
 					sys.exit(1)
 				self.fileType = 'FASTA'
 			else:
@@ -1096,7 +1096,7 @@ class Sequence:
 						found = True
 					if found:
 						if verbose:
-							print item
+							print(item)
 						self.seqRemoveByIndex(i)
 						count += 1
 						i -= 1		# one item removed; incremented outside loop
@@ -1116,7 +1116,7 @@ class Sequence:
 						break
 				if not found:
 					if verbose:
-						print item
+						print(item)
 					self.seqRemoveByIndex(i)
 					count += 1
 					i -= 1			# one item removed; incremented outside loop
@@ -1338,9 +1338,9 @@ class Sequence:
 					if j != BB:		# if j is the ambiguous base (j is not equal to the base)
 						if BB in DISAMBIGUATE[j]:		# the base at this position is one of the disambiguous ones
 							monobaseCount += 1
-							# print i, column, '<br>'
-							# print column[:column.index(j)] + BB + column[column.index(j) + 1:], '<br>'
-							# print j, ' becomes ', BB, '<br>'
+							# print(i, column, '<br>')
+							# print(column[:column.index(j)] + BB + column[column.index(j) + 1:], '<br>')
+							# print(j, ' becomes ', BB, '<br>')
 							self.seq[column.index(j)]['seq'] = self.seq[column.index(j)]['seq'][:i] + BB + self.seq[column.index(j)]['seq'][i + 1:]
 							# also update the column so that subsequent ambiguous bases can be found
 							# as these are indexed by column.index(j) so the same entry is updated
@@ -1408,19 +1408,19 @@ class Sequence:
 
 		for i in seroMotifs:
 			serotyped = False
-			# print i[0][:20], i[1],
+			# print(i[0][:20], i[1])
 			for j in SEROPATTERNS:
 				found = re.search(j, i[1])
 				if found:
-					# print j, SEROPATTERNS[j]
+					# print(j, SEROPATTERNS[j])
 					serotype = SEROPATTERNS[j]
 					serotyped = True
 			if not serotyped:
 				if i[1][0] in SEROGROUP:
-					# print j[0], SEROGROUP[j[0]]	# at least "ad" or "ay"  --  i[1][0] is the first amino acid in the pattern
+					# print(j[0], SEROGROUP[j[0]])	# at least "ad" or "ay"  --  i[1][0] is the first amino acid in the pattern
 					serotype = SEROGROUP[i[1][0]]
 				else:
-					# print "Unknown"
+					# print("Unknown")
 					serotype = "Unknown"
 
 			three = ''
@@ -1701,7 +1701,7 @@ class Sequence:
 
 			CHI = scipy.stats.chisqprob(chisq.sum(), degreesFreedom)
 			if CHI <= threshold:
-				print 'position %04i, p=%3.8f, chi-squared=%3.2f, DOF=%i' % (i+1, CHI, chisq.sum(), degreesFreedom)
+				print('position %04i, p=%3.8f, chi-squared=%3.2f, DOF=%i' % (i+1, CHI, chisq.sum(), degreesFreedom))
 
 		# ----- end column -----
 
@@ -1732,7 +1732,7 @@ class Sequence:
 		length = len(self.seq[0]['seq'])
 		for i in range(0, length):              # each position in the sequence
 			d = self.baseDistribution(str(i+1), set1=AMINOACIDS, set2=[GAP])
-			# print d
+			# print(d)
 			high = 0
 			highRes = GAP
 			for j in d[0]:
@@ -1760,7 +1760,7 @@ class Sequence:
 					mutantList2 += self.seq[j]['seq'][i]
 			group2 = (tempC, len(g[1]) - tempC)
 
-			# print group1, group2
+			# print(group1, group2)
 			# 2x2 contingency "shortcut" variables
 			a = group1[0]
 			b = group1[1]
@@ -1773,7 +1773,7 @@ class Sequence:
 				CHI = (((a*d - b*c) ** 2) * (a+b+c+d)) / float( (a+b) * (c+d) * (b+d) * (a+c))
 				CHIp = scipy.stats.chisqprob(CHI, 1)    # 1 dof
 				# if CHIp < 0.1:
-				# 	print "position %03i with wild-type %s has p=%4.3f (Chi Square = %4.3f)" % (i+1, highRes, CHIp, CHI)
+				# 	print("position %03i with wild-type %s has p=%4.3f (Chi Square = %4.3f)" % (i+1, highRes, CHIp, CHI))
 			else:
 				CHIp = 99	# prevent including this in the returned output below
 
@@ -1885,6 +1885,6 @@ class Sequence:
 	# --------------
 
 if __name__ == '__main__':
-	print motd()
+	print(motd())
 
 # Ends

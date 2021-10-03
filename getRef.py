@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -24,8 +26,6 @@
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
 
-#!/usr/bin/python
-
 import climb
 import sys
 
@@ -46,8 +46,8 @@ for i in S.seq:
                         flag = True
                         continue
         if not flag:
-                print ">%s" % (i['id'])
-                print "%s" % (i['seq'])
+                print(">%s" % (i['id']))
+                print("%s" % (i['seq']))
 
                 count += 1
                 if count >= 3:

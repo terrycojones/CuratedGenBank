@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -23,8 +25,6 @@
 # sequence data from the GenBank public database.
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
-
-#!/usr/bin/python
 
 import re
 import sys
@@ -111,7 +111,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         aF.write('>%s%s\n' % (out[0], flags))
                         aF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         aFull.write('>%s%s\n' % (out[0], flags))
                         aFull.write('%s\n' % seq_record.seq.tostring())
@@ -121,7 +121,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         bF.write('>%s%s\n' % (out[0], flags))
                         bF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         bFull.write('>%s%s\n' % (out[0], flags))
                         bFull.write('%s\n' % seq_record.seq.tostring())
@@ -131,7 +131,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         cF.write('>%s%s\n' % (out[0], flags))
                         cF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         cFull.write('>%s%s\n' % (out[0], flags))
                         cFull.write('%s\n' % seq_record.seq.tostring())
@@ -141,7 +141,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         dF.write('>%s%s\n' % (out[0], flags))
                         dF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         dFull.write('>%s%s\n' % (out[0], flags))
                         dFull.write('%s\n' % seq_record.seq.tostring())
@@ -151,7 +151,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         eF.write('>%s%s\n' % (out[0], flags))
                         eF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         eFull.write('>%s%s\n' % (out[0], flags))
                         eFull.write('%s\n' % seq_record.seq.tostring())
@@ -161,7 +161,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         fF.write('>%s%s\n' % (out[0], flags))
                         fF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         fFull.write('>%s%s\n' % (out[0], flags))
                         fFull.write('%s\n' % seq_record.seq.tostring())
@@ -171,7 +171,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         gF.write('>%s%s\n' % (out[0], flags))
                         gF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         gFull.write('>%s%s\n' % (out[0], flags))
                         gFull.write('%s\n' % seq_record.seq.tostring())
@@ -181,7 +181,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         hF.write('>%s%s\n' % (out[0], flags))
                         hF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         hFull.write('>%s%s\n' % (out[0], flags))
                         hFull.write('%s\n' % seq_record.seq.tostring())
@@ -191,7 +191,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         iF.write('>%s%s\n' % (out[0], flags))
                         iF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         iFull.write('>%s%s\n' % (out[0], flags))
                         iFull.write('%s\n' % seq_record.seq.tostring())
@@ -201,7 +201,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                         jF.write('>%s%s\n' % (out[0], flags))
                         jF.write('%s\n' % seq_record.seq.tostring())
                 else:
-                        print '%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring()))
+                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
                 if len(seq_record.seq.tostring()) == fullLengths[genotype]:
                         jFull.write('>%s%s\n' % (out[0], flags))
                         jFull.write('%s\n' % seq_record.seq.tostring())
