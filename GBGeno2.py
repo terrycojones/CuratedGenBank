@@ -30,7 +30,7 @@ import re
 import sys
 
 if len(sys.argv) < 2:
-	sys.exit('Specify raw GenBank input file.')
+        sys.exit('Specify raw GenBank input file.')
 
 fullLengths = {'A': 3221, 'B': 3215, 'C': 3215, 'D': 3182, 'E': 3212, 'F': 3215, 'G': 3248, 'H': 3215, 'I': 3215, 'J': 3215}
 
@@ -67,7 +67,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
         for f in seq_record.features:
                 if f.type == 'source':
                         source = True
-                        if f.qualifiers.has_key('note'):
+                        if 'note' in f.qualifiers:
                                 if (re.search('type', f.qualifiers['note'][0], flags=re.IGNORECASE)) and not (re.search('recomb', f.qualifiers['note'][0], flags=re.IGNORECASE)):
                                         nn = [tt for tt in re.split('[,:; ]', f.qualifiers['note'][0]) if tt]
                                         nflag = False
@@ -95,7 +95,7 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
         if not source:
                 out.append('NO SOURCE')
 
-	exportF.write('%s,%s\n' % (out[0], genotype))	# move into condition above to export only genotyped accession numbers
+        exportF.write('%s,%s\n' % (out[0], genotype))   # move into condition above to export only genotyped accession numbers
 
         if genotype in ['A','B','C','D','E','F','G','H','I','J']:
 
@@ -107,106 +107,106 @@ for seq_record in SeqIO.parse(sys.argv[1], 'genbank'):
                 flags = '_[%s]_%s' % (genotype, flagUn) # passing flagUn to parseXML2b later
 
         if genotype == 'A':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         aF.write('>%s%s\n' % (out[0], flags))
-                        aF.write('%s\n' % seq_record.seq.tostring())
+                        aF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         aFull.write('>%s%s\n' % (out[0], flags))
-                        aFull.write('%s\n' % seq_record.seq.tostring())
+                        aFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'B':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         bF.write('>%s%s\n' % (out[0], flags))
-                        bF.write('%s\n' % seq_record.seq.tostring())
+                        bF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         bFull.write('>%s%s\n' % (out[0], flags))
-                        bFull.write('%s\n' % seq_record.seq.tostring())
+                        bFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'C':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         cF.write('>%s%s\n' % (out[0], flags))
-                        cF.write('%s\n' % seq_record.seq.tostring())
+                        cF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         cFull.write('>%s%s\n' % (out[0], flags))
-                        cFull.write('%s\n' % seq_record.seq.tostring())
+                        cFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'D':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         dF.write('>%s%s\n' % (out[0], flags))
-                        dF.write('%s\n' % seq_record.seq.tostring())
+                        dF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         dFull.write('>%s%s\n' % (out[0], flags))
-                        dFull.write('%s\n' % seq_record.seq.tostring())
+                        dFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'E':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         eF.write('>%s%s\n' % (out[0], flags))
-                        eF.write('%s\n' % seq_record.seq.tostring())
+                        eF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         eFull.write('>%s%s\n' % (out[0], flags))
-                        eFull.write('%s\n' % seq_record.seq.tostring())
+                        eFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'F':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         fF.write('>%s%s\n' % (out[0], flags))
-                        fF.write('%s\n' % seq_record.seq.tostring())
+                        fF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         fFull.write('>%s%s\n' % (out[0], flags))
-                        fFull.write('%s\n' % seq_record.seq.tostring())
+                        fFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'G':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         gF.write('>%s%s\n' % (out[0], flags))
-                        gF.write('%s\n' % seq_record.seq.tostring())
+                        gF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         gFull.write('>%s%s\n' % (out[0], flags))
-                        gFull.write('%s\n' % seq_record.seq.tostring())
+                        gFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'H':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         hF.write('>%s%s\n' % (out[0], flags))
-                        hF.write('%s\n' % seq_record.seq.tostring())
+                        hF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         hFull.write('>%s%s\n' % (out[0], flags))
-                        hFull.write('%s\n' % seq_record.seq.tostring())
+                        hFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'I':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         iF.write('>%s%s\n' % (out[0], flags))
-                        iF.write('%s\n' % seq_record.seq.tostring())
+                        iF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         iFull.write('>%s%s\n' % (out[0], flags))
-                        iFull.write('%s\n' % seq_record.seq.tostring())
+                        iFull.write('%s\n' % str(seq_record.seq))
 
         if genotype == 'J':
-                if len(seq_record.seq.tostring()) <= fullLengths[genotype]:
+                if len(str(seq_record.seq)) <= fullLengths[genotype]:
                         jF.write('>%s%s\n' % (out[0], flags))
-                        jF.write('%s\n' % seq_record.seq.tostring())
+                        jF.write('%s\n' % str(seq_record.seq))
                 else:
-                        print('%s\t%s\t%i' % (genotype, out[0], len(seq_record.seq.tostring())))
-                if len(seq_record.seq.tostring()) == fullLengths[genotype]:
+                        print('%s\t%s\t%i' % (genotype, out[0], len(str(seq_record.seq))))
+                if len(str(seq_record.seq)) == fullLengths[genotype]:
                         jFull.write('>%s%s\n' % (out[0], flags))
-                        jFull.write('%s\n' % seq_record.seq.tostring())
+                        jFull.write('%s\n' % str(seq_record.seq))
 
-        sumF.write('%s,%i\n' % (genotype,len(seq_record.seq.tostring())))
+        sumF.write('%s,%i\n' % (genotype,len(str(seq_record.seq))))
 
 aF.close()
 bF.close()

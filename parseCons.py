@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -24,8 +26,6 @@
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
 
-#!/usr/bin/python
-
 import climb
 import sys
 import re
@@ -49,7 +49,7 @@ for fn in files:
 
         m = re.search(climb.GAP, cons)
         if m is not None:
-                # print 'Gaps found in consensus aligned with %s' % (i['id'])
+                # print('Gaps found in consensus aligned with %s' % (i['id']))
                 withGaps += 1
                 S.unload()
                 continue
@@ -65,12 +65,12 @@ for fn in files:
                                         mismatches += 1
                 pos += 1
 
-        # print '%s*,%04i,%04i,%3.2f' % (i['id'][:8], mismatches, bases, mismatches/float(bases)*100)
+        # print('%s*,%04i,%04i,%3.2f' % (i['id'][:8], mismatches, bases, mismatches/float(bases)*100))
 
         if mismatches/float(bases)*100 <= threshold:
                 withMismatches += 1
-                print '>%s' % (i['id'])
-                print '%s' % (i['seq'])
+                print('>%s' % (i['id']))
+                print('%s' % (i['seq']))
         else:
                 withGaps += 1
 

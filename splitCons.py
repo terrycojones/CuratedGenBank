@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -24,8 +26,6 @@
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
 
-#!/usr/bin/python
-
 import climb
 import sys
 import re
@@ -47,7 +47,7 @@ for i in S.baseDistribution('1-%i' % (S.seqLength()[0][1])):
                         highBase = j
         cons += highBase
 
-print 'ID,Mismatches,Bases,Percentage'
+print('ID,Mismatches,Bases,Percentage')
 
 mismatchList = []
 overLength = 0
@@ -76,7 +76,7 @@ for i in S.seq:
                 f.write('%s\n' % (i['seq']))
                 f.close()
 
-        print '%s,%04i,%04i,%3.2f' % (i['id'][:8], mismatches, bases, mismatches/float(bases)*100)
+        print('%s,%04i,%04i,%3.2f' % (i['id'][:8], mismatches, bases, mismatches/float(bases)*100))
 
 f = open('%s_cons.fasta' % (sys.argv[1][0]), 'w')          # first character is the genotype
 f.write('>Cons\n')

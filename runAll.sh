@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -23,8 +25,6 @@
 # sequence data from the GenBank public database.
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
-
-#!/bin/bash
 
 THEFILE=$1
 THEDATE=$2
@@ -61,7 +61,7 @@ else
     for i in {A..J} ;
     do
 	grep -c ">" "$THEDATE"/Genotype"$i".fasta
-	rm "$THEDATE"/Genotype"$i".fasta
+	rm -f "$THEDATE"/Genotype"$i".fasta
     done
 
     # Tidy up
@@ -69,16 +69,16 @@ else
 
     for i in {A..J} ;
     do
-	rm "$i".xml
-	rm "$i"_log.txt
-	rm "$i"8*.fasta
-	rm "$i".fasta
-	rm "$i"_full.fasta
-	rm "$i"placed.fasta
-	rm *8.csv
+	rm -f "$i".xml
+	rm -f "$i"_log.txt
+	rm -f "$i"8*.fasta
+	rm -f "$i".fasta
+	rm -f "$i"_full.fasta
+	rm -f "$i"placed.fasta
+	rm -f *8.csv
     done
 
-    rm OverLengths.txt CheckFinalAlignment.txt HBV_* formatdb.log export.csv summary.csv $THEFILE
+    rm -f OverLengths.txt CheckFinalAlignment.txt HBV_* formatdb.log export.csv summary.csv
 
     mv $THEDATE.zip $THEDATE/
 

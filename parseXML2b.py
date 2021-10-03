@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -24,8 +26,6 @@
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
 
-#!/usr/bin/python
-
 import re
 import sys
 
@@ -36,10 +36,10 @@ blast_records = NCBIXML.parse(result_handle)
 
 # if alignment length is less than query length, check second hit
 
-def placeFrag(ss, pp, bb):	# accepts the ACTUAL position (1-indexed) as this is what is specified by the user and passed in for non-wraps positions
-	return bb[:pp-1] + ss + bb[pp+len(ss)-1:]
+def placeFrag(ss, pp, bb):      # accepts the ACTUAL position (1-indexed) as this is what is specified by the user and passed in for non-wraps positions
+        return bb[:pp-1] + ss + bb[pp+len(ss)-1:]
 
-# print "Fragment,QueryLength,FullLength,AlignLength"
+# print("Fragment,QueryLength,FullLength,AlignLength")
 for blast_record in blast_records:
 
         if len(blast_record.alignments) == 0:
@@ -56,7 +56,7 @@ for blast_record in blast_records:
                 else:
                         tag = '-'
 
-        # print '%-10s,%04i,%-10s,%04i,%-01s' % (blast_record.query, blast_record.query_length, blast_record.alignments[0].title.split()[1], out, tag)
+        # print('%-10s,%04i,%-10s,%04i,%-01s' % (blast_record.query, blast_record.query_length, blast_record.alignments[0].title.split()[1], out, tag))
 
         backbone = '-' * int(sys.argv[2])
         for i in blast_record.alignments[0].hsps:
@@ -89,9 +89,9 @@ for blast_record in blast_records:
         flags = '[%04i]_[%s%s%s%s]' % (c, flagL, flagN, flagW, flagUn)
         out = blast_record.query[:-1] + flags
 
-        # print ">%s_%s_[%s]" % (blast_record.query, tag, blast_record.alignments[0].title.split()[1])
-        print ">%s" % (out)
-        print backbone + '\n'
+        # print(">%s_%s_[%s]" % (blast_record.query, tag, blast_record.alignments[0].title.split()[1]))
+        print(">%s" % (out))
+        print(backbone + '\n')
 
 # Ends
 

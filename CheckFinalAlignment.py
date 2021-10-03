@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -24,8 +26,6 @@
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
 
-#!/usr/bin/python
-
 import sys
 import climb
 
@@ -39,10 +39,10 @@ removeList = []
 for i in S.seq:
     if len(i['seq']) > theLength:
            removeList.append(i['id'])
-           print '%s is overlength in final alignment -- removed' % (i['id'])
+           print('%s is overlength in final alignment -- removed' % (i['id']))
 
 S.seqRemoveByID(removeList, escape=True)
-print '%i sequences removed' % (len(removeList))
+print('%i sequences removed' % (len(removeList)))
 S.save(S.fileName, overWrite=True)
 S.unload()
 

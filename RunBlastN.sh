@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Curated Hepatitis B Virus Alignments from GenBank Data
 # Copyright (C) 2017 University of the Witwatersrand, Johannesburg, South Africa
 # Author: Dr Trevor G. Bell, TrevorGrahamBell@gmail.com
@@ -24,8 +26,6 @@
 # SpringerPlus 5: 1896.
 # https://springerplus.springeropen.com/articles/10.1186/s40064-016-3312-0
 
-#!/bin/bash
-
 GENO=$1
 THRESHOLDSTART=$2
 THRESHOLDEND=$3
@@ -37,14 +37,14 @@ if [ -z "$GENO" ] || [ -z "$THRESHOLDSTART" ] || [ -z "$THRESHOLDEND" ] || [ -z 
 
 else
 
-	rm -v "$GENO"_log.txt
+	rm -fv "$GENO"_log.txt
 	touch "$GENO"_log.txt
-	rm -v HBV_"$GENO"*
-	rm -v "$GENO"*clean*
-	rm -v "$GENO"*placed*
-	rm -v "$GENO"*merge*
-	rm -v "$GENO"*.csv
-	rm -v "$GENO".xml
+	rm -fv HBV_"$GENO"*
+	rm -fv "$GENO"*clean*
+	rm -fv "$GENO"*placed*
+	rm -fv "$GENO"*merge*
+	rm -fv "$GENO"*.csv
+	rm -fv "$GENO".xml
 
 	echo "Extracting reference sequence..."
 	python getRef.py "$GENO"_full.fasta "$LENGTH" > HBV_"$GENO"
@@ -93,9 +93,9 @@ else
 
 		echo "Done."
 
-		rm -v _*.fasta
-		rm -v n_*.fasta
-		rm -v "$GENO"_cons.fasta
+		rm -fv _*.fasta
+		rm -fv n_*.fasta
+		rm -fv "$GENO"_cons.fasta
 
 	done
 
