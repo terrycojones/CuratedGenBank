@@ -1869,7 +1869,7 @@ class Sequence:
                         for j in (BASES + NONBASES):
                                 # The following used to say j <> maxResidue
                                 # I changed to <.
-                                if (j < maxResidue) and (i[j] >= countThreshold):
+                                if (j != maxResidue) and (i[j] >= countThreshold):
                                         interestingColumns.append(c)
                                         break
                         for j in (BASES + NONBASES):
